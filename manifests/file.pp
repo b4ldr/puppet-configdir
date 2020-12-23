@@ -7,11 +7,11 @@ define configdir::file (
         fail('need to define configdir_dir')
     }
     $test_file = "${configdir::basedir}/${configdir_dir}/${title.basename}"
-    @file {$test_file:
+    file {$test_file:
         *      => $params,
         notify => Exec["configdir__dir_${configdir_dir}"],
     }
-    @file {$title:
+    file {$title:
         *      => $params,
         require => Exec["configdir__dir_${configdir_dir}"],
     }
